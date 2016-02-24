@@ -32,6 +32,8 @@
 #import "MMVimController.h"
 #import "MMWindowController.h"
 
+extern void CGContextSetFontSmoothingStyle(CGContextRef, int);
+
 
 // TODO: What does DRAW_TRANSP flag do?  If the background isn't drawn when
 // this flag is set, then sometimes the character after the cursor becomes
@@ -576,6 +578,8 @@ defaultAdvanceForFont(NSFont *font)
 {
     NSGraphicsContext *context = [NSGraphicsContext currentContext];
     [context setShouldAntialias:antialias];
+	CGContextRef cgContext = (CGContextRef) [context graphicsPort];
+	CGContextSetFontSmoothingStyle(cgContext, 16);
 
     id data;
     NSEnumerator *e = [drawData objectEnumerator];
