@@ -1689,12 +1689,12 @@ extern GuiFont gui_mch_retain_font(GuiFont font);
 {
     MMChannel *mmChannel =
         [[MMChannel alloc] initWithChannel:channel part:part];
-    return (__bridge void *)mmChannel;
+    return (void *)mmChannel;
 }
 
 - (void)removeChannel:(void *)cookie
 {
-    MMChannel *mmChannel = (__bridge MMChannel *)cookie;
+    MMChannel *mmChannel = (MMChannel *)cookie;
     [mmChannel release];
 }
 
@@ -3416,6 +3416,7 @@ static id evalExprCocoa(NSString * expr, NSString ** errstr)
 
 - (void)dealloc
 {
+    CFSocketInvalidate(socket);
     CFRunLoopSourceInvalidate(runLoopSource);
     CFRelease(runLoopSource);
     CFRelease(socket);
@@ -3428,7 +3429,7 @@ static void socketReadCallback(CFSocketRef s,
                                const void *data,
                                void *info)
 {
-    MMChannel *mmChannel = (__bridge MMChannel *)info;
+    MMChannel *mmChannel = (MMChannel *)info;
     [mmChannel read];
 }
 
@@ -3441,7 +3442,7 @@ static void socketReadCallback(CFSocketRef s,
     part = p;
 
     // Tell CFRunLoop that we are interested in channel socket input.
-    CFSocketContext ctx = {0, (__bridge void *)self, NULL, NULL, NULL};
+    CFSocketContext ctx = {0, (void *)self, NULL, NULL, NULL};
     socket = CFSocketCreateWithNative(kCFAllocatorDefault,
                                       channel->ch_part[part].ch_fd,
                                       kCFSocketReadCallBack,
@@ -3459,9 +3460,7 @@ static void socketReadCallback(CFSocketRef s,
 
 - (void)read
 {
-#ifdef FEAT_CHANNEL
     channel_read(channel, part, "MMChannel_read");
-#endif
 }
 
 @end

@@ -1,4 +1,4 @@
-*various.txt*   For Vim version 7.4.  Last change: 2016 Feb 18
+*various.txt*   For Vim version 7.4.  Last change: 2016 Apr 29
 
 
 		  VIM REFERENCE MANUAL    by Bram Moolenaar
@@ -413,7 +413,6 @@ m  *+ruby/dyn*		Ruby interface |ruby-dynamic| |/dyn|
 N  *+scrollbind*	|'scrollbind'|
 B  *+signs*		|:sign|
 N  *+smartindent*	|'smartindent'|
-m  *+sniff*		SniFF interface |sniff|
 N  *+startuptime*	|--startuptime| argument
 N  *+statusline*	Options 'statusline', 'rulerformat' and special
 			formats of 'titlestring' and 'iconstring'
@@ -427,8 +426,10 @@ m  *+tcl*		Tcl interface |tcl|
 m  *+tcl/dyn*		Tcl interface |tcl-dynamic| |/dyn|
    *+terminfo*		uses |terminfo| instead of termcap
 N  *+termresponse*	support for |t_RV| and |v:termresponse|
+B  *+termguicolors*	24-bit color in xterm-compatible terminals support
 N  *+textobjects*	|text-objects| selection
    *+tgetent*		non-Unix only: able to use external termcap
+N  *+timers*		the |timer_start()| function
 N  *+title*		Setting the window 'title' and 'icon'
 N  *+toolbar*		|gui-toolbar|
 m  *+transparency*      MacVim only: window background transparency
